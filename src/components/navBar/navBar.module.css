@@ -34,3 +34,8 @@
 .nav_link:focus {
   color: orange;
 }
+
+.logout_wrapper {
+  display: flex;
+  gap: 20px;
+}
