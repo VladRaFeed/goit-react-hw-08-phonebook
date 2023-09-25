@@ -1,4 +1,3 @@
-import { nanoid } from '@reduxjs/toolkit';
 import css from './Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/store/operations';
