@@ -14,8 +14,7 @@ export default function Form() {
     const form = e.target;
     const contact = {
       name: form.elements.name.value,
-      phone: form.elements.number.value,
-      id: nanoid(),
+      number: form.elements.number.value,
     };
 
     const nameError = contacts.find(

@@ -27,7 +27,7 @@ export const ContactsList = () => {
         {visibleContacts.map(contact => (
           <li key={contact.id} className={css.contact_item}>
             <p className={css.contact_name}>
-              {contact.name}: {contact.phone}
+              {contact.name}: {contact.number}
             </p>
             <button
               type="button"

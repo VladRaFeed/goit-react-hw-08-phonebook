@@ -7,7 +7,7 @@ export default function Layout() {
   return (
     <div>
       <NavBar />
-      <Suspense fallback={null}>
+      <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
       <Toaster position="top-right" reverseOrder={false} />

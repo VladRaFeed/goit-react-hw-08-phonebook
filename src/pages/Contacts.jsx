@@ -4,10 +4,12 @@ import { Filter } from '../components/Filter/Filter';
 
 export default function Contacts() {
   return (
-    <>
-      <Form />
-      <Filter />
-      <ContactsList />
-    </>
+    <main>
+      <section>
+        <Form />
+        <Filter />
+        <ContactsList />
+      </section>
+    </main>
   );
 }
