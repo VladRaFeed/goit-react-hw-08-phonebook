@@ -1,10 +1,12 @@
 import css from './App.module.css';
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import { RestrictedRoute } from './RestricredRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { useAuth } from './hooks/useAuth';
+import { useDispatch } from 'react-redux';
+import { refreshUser } from 'redux/store/operations';
 
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
@@ -13,6 +15,11 @@ const ContactsPage = lazy(() => import('../pages/Contacts'));
 
 export default function App() {
   const { isRefreshing } = useAuth();
+  const disptach = useDispatch();
+
+  useEffect(() => {
+    disptach(refreshUser());
+  }, [disptach]);
 
   return isRefreshing ? (
     <p>Refreshing user...</p>
@@ -45,8 +52,8 @@ export default function App() {
               <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
             }
           />
-          </Route>
-          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   );
