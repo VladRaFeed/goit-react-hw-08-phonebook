@@ -1,6 +1,6 @@
 import css from './App.module.css';
 import { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import { RestrictedRoute } from './RestricredRoute';
 import { PrivateRoute } from './PrivateRoute';
@@ -45,7 +45,8 @@ export default function App() {
               <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
             }
           />
-        </Route>
+          </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   );
