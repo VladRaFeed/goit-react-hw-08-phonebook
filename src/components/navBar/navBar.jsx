@@ -14,6 +14,11 @@ export default function NavBar() {
       <NavLink to="/" className={css.home_link}>
         Home
       </NavLink>
+      {isLoggedIn && (
+        <NavLink to="/contacts" className={css.nav_link}>
+          Contacts
+        </NavLink>
+      )}
       <nav className={css.nav_bar}>
         {isLoggedIn === false ? (
           <ul className={css.nav_list}>
