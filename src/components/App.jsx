@@ -1,7 +1,5 @@
-import NavBar from './navBar/navBar';
 import css from './App.module.css';
-import { useEffect, lazy } from 'react';
-import { useDispatch } from 'react-redux';
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import { RestrictedRoute } from './RestricredRoute';
