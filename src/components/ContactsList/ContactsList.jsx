@@ -8,6 +8,7 @@ import {
   selectIsLoading,
   selectVisibleContacts,
 } from 'redux/store/selectors/selectors';
+import toast from 'react-hot-toast';
 
 export const ContactsList = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export const ContactsList = () => {
               type="button"
               onClick={() => {
                 dispatch(deleteContact(contact.id));
+                toast.success('Contact delete on your list');
               }}
               className={css.contact_delete}
             >

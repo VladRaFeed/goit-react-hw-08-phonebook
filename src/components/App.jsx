@@ -1,16 +1,51 @@
-import Form from './Form/Form';
-import { ContactsList } from './ContactsList/ContactsList';
-import { Filter } from './Filter/Filter';
+import NavBar from './navBar/navBar';
 import css from './App.module.css';
-import { Toaster } from 'react-hot-toast';
+import { useEffect, lazy } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './Layout';
+import { RestrictedRoute } from './RestricredRoute';
+import { PrivateRoute } from './PrivateRoute';
+import { useAuth } from './hooks/useAuth';
+
+const HomePage = lazy(() => import('../pages/Home'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/Login'));
+const ContactsPage = lazy(() => import('../pages/Contacts'));
 
 export default function App() {
-  return (
+  const { isRefreshing } = useAuth();
+
+  return isRefreshing ? (
+    <p>Refreshing user...</p>
+  ) : (
     <div className={css.global_wrapper}>
-      <Form />
-      <Filter />
-      <ContactsList />
-      <Toaster position="top-right" reverseOrder={false} />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/tasks"
+                component={<RegisterPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/tasks" component={<LoginPage />} />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            }
+          />
+        </Route>
+      </Routes>
     </div>
   );
 }
