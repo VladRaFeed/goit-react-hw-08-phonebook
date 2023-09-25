@@ -30,7 +30,7 @@ export default function NavBar() {
           </ul>
         ) : (
           <div className={css.logout_wrapper}>
-            <p>Hi, {user.name}!</p>
+            <p>{user.email}</p>
             <button type="button" onClick={() => dispatch(logOut())}>
               LogOut
             </button>
